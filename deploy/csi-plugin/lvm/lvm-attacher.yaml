@@ -13,12 +13,15 @@ spec:
 
 ---
 kind: StatefulSet
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 metadata:
   name: csi-lvm-attacher
 spec:
   serviceName: "csi-lvm-attacher"
   replicas: 1
+  selector:
+    matchLabels:
+      app: csi-lvm-attacher
   template:
     metadata:
       labels:

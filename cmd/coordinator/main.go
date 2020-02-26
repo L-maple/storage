@@ -23,7 +23,6 @@ func init() {
 	flag.StringVar(&me, "me", "fancy", "specify who am I ")
 	flag.StringVar(&anotherURL, "another", "127.0.0.1:8888", "another coordinator url")
 	flag.IntVar(&port, "port", 8888, "listen port ")
-
 }
 
 func main() {

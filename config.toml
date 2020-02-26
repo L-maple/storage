@@ -3,7 +3,7 @@ ip = "127.0.0.1"
 port = "50052"
 
 [node]
-name = "localhost.localdomain"
+name = "maple-virtual-machine"
 
 [node.storage]
 name = "vgdata"
