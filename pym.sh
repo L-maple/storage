@@ -7,15 +7,23 @@ kubectl create -f csinodeinfo.yaml
 printf "STEP1 finished.\n"
 
 # create resources related to lvm
-printf "\nSTEP2 starting..."
+printf "\nSTEP2 starting...\n"
 cd lvm/
 kubectl create -f lvm-attacher.yaml
 kubectl create -f lvm-plugin.yaml
+kubectl create -f storageclass.yaml
 printf "STEP2 finished.\n"
 
-# change directory to storage/
-cd ../../..
+# change directory to deploy/
+# define new crd
+printf "\nSTEP3 starting...\n"
+cd ../../
 # shellcheck disable=SC2006
-echo "Change to storage/: " `pwd`
+kubectl create -f crd.yaml
+printf "\nSTEP3 finished\n"
+
+# change directory to storage/
+cd ../
+
 
 
