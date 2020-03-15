@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os/exec"
+	"strconv"
+
 	//"time"
 )
 
@@ -13,8 +15,12 @@ type Diskio struct {
 	tid	uint16
 }
 
-func (*Diskio) Run() {
-	cmd := exec.Command("/bin/sh", "-c", "sudo iotop -bk -n 2 -d 5 -p 15841")  // which iotop -> file location
+func (d *Diskio) Run() {
+	cmd := exec.Command("/bin/sh",
+						 "-c",
+						 "sudo iotop -bkt -n 1 -d " +
+							strconv.FormatFloat(float64(d.pause), 'g', -1, 32) +
+							" -p " + strconv.FormatInt(int64(d.tid), 10)) // which iotop -> file location
 	var output []byte
 	var err error
 	if output, err = cmd.Output(); err != nil {
@@ -37,6 +43,7 @@ func NewDiskIO (pid uint16, pauseTime float32) *Diskio {
 }
 
 func main() {
+
 	diskio := NewDiskIO(15841, 2)
 	diskio.Run()
 }
