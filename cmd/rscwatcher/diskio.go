@@ -2,48 +2,68 @@ package main
 
 import (
 	"fmt"
+	"github.com/tommenx/storage/pkg/config"
 	"os/exec"
 	"strconv"
+	"time"
 
 	//"time"
 )
 
 type Diskio struct {
-	pause float32   // watcher internal-times, second
+	pause int32   // watcher internal-times, second
 	diskRead float32  // disk-read speed, K/s
-	diskWrite float64  // disk-write speed, K/s
+	diskWrite float32  // disk-write speed, K/s
 	tid	uint16
 }
 
 func (d *Diskio) Run() {
+	pidStr :=  strconv.FormatInt(int64(d.tid), 10)
+
 	cmd := exec.Command("/bin/sh",
 						 "-c",
-						 "sudo iotop -bkt -n 1 -d " +
-							strconv.FormatFloat(float64(d.pause), 'g', -1, 32) +
-							" -p " + strconv.FormatInt(int64(d.tid), 10)) // which iotop -> file location
-	var output []byte
-	var err error
-	if output, err = cmd.Output(); err != nil {
+						 "sudo iotop -bkt -n 1 -p " + pidStr)
+
+	// get the iotop's output
+	if output, err := cmd.Output(); err != nil {
 		fmt.Println(err.Error())
 		return
+	}else {
+		// parse the diskRead and diskWrite
+		fmt.Println(time.Now().Second())
+		fmt.Println(string(output))
 	}
-	// parse the diskRead and diskWrite
-	fmt.Println(string(output))
 }
 
 /*
-	pid: process id;
-	pauseTime: pause time, second, for exmaple: 1s
+	function: return a Diskio object;
+	parameters:
+		pid: process id;
+		pauseTime: pause time, second, for exmaple: 1s
  */
-func NewDiskIO (pid uint16, pauseTime float32) *Diskio {
+func NewDiskIO (pid uint16, pauseTime int32) *Diskio {
 	return &Diskio{
 		pause: pauseTime,
 		tid: pid,
 	}
 }
 
-func main() {
+func getPauseTime(path string) int32 {
+	config.Init(path)
+	return config.GetPauseTime()
+}
 
-	diskio := NewDiskIO(15841, 2)
-	diskio.Run()
+func RunDiskIO(pid uint16) {
+	// read pauseTime from config file
+	pauseTime := getPauseTime("../../config.toml")
+
+	// get the result
+	diskio := NewDiskIO(uint16(pid), pauseTime)
+	for ;; {
+		diskio.Run()
+	}
+}
+
+func main() {
+	RunDiskIO(21344)
 }
