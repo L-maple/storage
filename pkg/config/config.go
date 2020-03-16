@@ -9,6 +9,11 @@ import (
 type Config struct {
 	Coordinator Coordinator `toml:"coordinator"`
 	Node        Node        `toml:"node"`
+	Watcher     Watcher     `toml:"watcher"`
+}
+
+type Watcher struct {
+	PauseTime int32       `toml:"pauseTime"`
 }
 
 type Coordinator struct {
@@ -53,4 +58,8 @@ func GetCapability() map[string]int64 {
 	data["read_bps_device"] = c.Node.Storage.Read
 	data["space"] = c.Node.Storage.Space
 	return data
+}
+
+func GetPauseTime() int32 {
+	return c.Watcher.PauseTime
 }

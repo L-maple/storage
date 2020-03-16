@@ -12,3 +12,6 @@ level ="SSD"
 space = 100
 write = 200
 read = 300
+
+[watcher]
+pauseTime = 1

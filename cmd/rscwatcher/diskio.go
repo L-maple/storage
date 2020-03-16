@@ -6,8 +6,6 @@ import (
 	"os/exec"
 	"strconv"
 	"time"
-
-	//"time"
 )
 
 type Diskio struct {

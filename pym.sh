@@ -1,3 +1,5 @@
+# pym.sh is used to install all yaml resources in deploy
+
 # create CSI and storageclass resources
 printf "STEP1 starting..."
 cd deploy/csi-plugin/

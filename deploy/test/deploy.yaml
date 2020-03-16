@@ -1,6 +1,6 @@
 apiVersion: v1
 items:
-  - apiVersion: apps/v1beta1
+  - apiVersion: apps/v1
     kind: StatefulSet
     metadata:
       labels:
@@ -9,6 +9,9 @@ items:
       namespace: default
     spec:
       serviceName: "datanode"
+      selector:
+        matchLabels:
+          app: ubuntu
       replicas: 2
       template:
         metadata:
@@ -40,7 +43,7 @@ items:
             storageClassName: csi-lvm
             resources:
               requests:
-                storage: 10Gi
+                storage: 1Gi
   - apiVersion: v1
     kind: Service
     metadata:

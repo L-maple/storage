@@ -11,11 +11,8 @@ sudo sysctl net.bridge.bridge-nf-call-iptables=1
 
 sudo kubectl apply -f ./kube-flannel.yml
 
-echo "123456" | su
+sudo rm -rf /root/.kube
+sudo mkdir -p /root/.kube
+sudo cp -i /etc/kubernetes/admin.conf /root/.kube/config
+sudo chown $(id -u):$(id -g) /root/.kube/config
 
-rm -rf $HOME/.kube
-mkdir -p $HOME/.kube
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-chown $(id -u):$(id -g) $HOME/.kube/config
-
-exit
