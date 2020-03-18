@@ -9,7 +9,7 @@ kubectl create -f csinodeinfo.yaml
 printf "STEP1 finished.\n"
 
 # create resources related to lvm
-printf "\nSTEP2 starting...\n"
+printf "\nSTEP2 starting..."
 cd lvm/
 kubectl create -f lvm-attacher.yaml
 kubectl create -f lvm-plugin.yaml
@@ -18,7 +18,7 @@ printf "STEP2 finished.\n"
 
 # change directory to deploy/
 # define new crd
-printf "\nSTEP3 starting...\n"
+printf "\nSTEP3 starting..."
 cd ../../
 # shellcheck disable=SC2006
 kubectl create -f crd.yaml
@@ -27,5 +27,18 @@ printf "\nSTEP3 finished\n"
 # change directory to storage/
 cd ../
 
+# install the metric-server addons
+printf "\nSTEP4 starting..."
+kubectl taint nodes --all node-role.kubernetes.io/master-  # 来使Master节点上可以调度Pod
+cd k8s_setup/metrics-server/
+kubectl create -f deploy/kubernetes/
+printf "\nSTEP4 finished\n"
 
+# change directory to storage/
+cd ../..
+
+# install the kubernetes-dashboard
+printf "\nSTEP5 starting..."
+kubectl create -f k8s_setup/kubernetes-dashboard.yaml
+printf "\nSTEP5 finished\n"
 
