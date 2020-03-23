@@ -1,15 +1,11 @@
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: test-pv
-  labels:
-    type: local
+  name: mongodb-pv
 spec:
+  storageClassName: csi-lvm 
   capacity:
-    storage: 5Gi
+    storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/root/volume"
-
-
+  persistentVolumeReclaimPolicy: Retain

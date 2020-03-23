@@ -22,4 +22,4 @@ spec:
   volumes:
     - name: datapv
       persistentVolumeClaim:
-        claimName: test-pvc
+        claimName: mongodb-pvc
