@@ -42,6 +42,7 @@ spec:
       targetPort: 8443
   selector:
     k8s-app: kubernetes-dashboard
+  type: NodePort
 
 ---
 
@@ -53,7 +54,7 @@ metadata:
   name: kubernetes-dashboard-certs
   namespace: kubernetes-dashboard
 type: Opaque
-
+        
 ---
 
 apiVersion: v1
@@ -156,6 +157,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -187,7 +189,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-dashboard
-          image: kubernetesui/dashboard:v2.0.0-rc6
+          image: kubernetesui/dashboard:v2.0.0-beta4
           imagePullPolicy: Always
           ports:
             - containerPort: 8443
@@ -199,6 +201,7 @@ spec:
             # If not specified, Dashboard will attempt to auto discover the API server and connect
             # to it. Uncomment only if the default does not work.
             # - --apiserver-host=http://my-address:port
+            - --token-ttl=604800
           volumeMounts:
             - name: kubernetes-dashboard-certs
               mountPath: /certs
@@ -212,11 +215,6 @@ spec:
               port: 8443
             initialDelaySeconds: 30
             timeoutSeconds: 30
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsUser: 1001
-            runAsGroup: 2001
       volumes:
         - name: kubernetes-dashboard-certs
           secret:
@@ -224,8 +222,6 @@ spec:
         - name: tmp-volume
           emptyDir: {}
       serviceAccountName: kubernetes-dashboard
-      nodeSelector:
-        "beta.kubernetes.io/os": linux
       # Comment the following tolerations if Dashboard must not be deployed on master
       tolerations:
         - key: node-role.kubernetes.io/master
@@ -266,12 +262,10 @@ spec:
     metadata:
       labels:
         k8s-app: dashboard-metrics-scraper
-      annotations:
-        seccomp.security.alpha.kubernetes.io/pod: 'runtime/default'
     spec:
       containers:
         - name: dashboard-metrics-scraper
-          image: kubernetesui/metrics-scraper:v1.0.3
+          image: kubernetesui/metrics-scraper:v1.0.1
           ports:
             - containerPort: 8000
               protocol: TCP
@@ -283,16 +277,9 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 30
           volumeMounts:
-            - mountPath: /tmp
-              name: tmp-volume
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsUser: 1001
-            runAsGroup: 2001
+          - mountPath: /tmp
+            name: tmp-volume
       serviceAccountName: kubernetes-dashboard
-      nodeSelector:
-        "beta.kubernetes.io/os": linux
       # Comment the following tolerations if Dashboard must not be deployed on master
       tolerations:
         - key: node-role.kubernetes.io/master
@@ -300,31 +287,3 @@ spec:
       volumes:
         - name: tmp-volume
           emptyDir: {}
-
----
-# ------------------- Gross Hack For anonymous auth through api proxy ------------------- #
-# Allows users to reach login page and other proxied dashboard URLs
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kubernetes-dashboard-anonymous
-rules:
-  - apiGroups: [""]
-    resources: ["services/proxy"]
-    resourceNames: ["https:kubernetes-dashboard:"]
-    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-  - nonResourceURLs: ["/ui", "/ui/*", "/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/*"]
-    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: kubernetes-dashboard-anonymous
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: kubernetes-dashboard-anonymous
-subjects:
-  - kind: User
-    name: system:anonymous
