@@ -1,0 +1,316 @@
+{
+	"comment": "",
+	"ignore": "",
+	"package": [
+		{
+			"path": "appengine",
+			"revision": ""
+		},
+		{
+			"path": "appengine_internal",
+			"revision": ""
+		},
+		{
+			"path": "appengine_internal/base",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "omM6LI0Xym1uotfmmNUfIQzRtZw=",
+			"path": "github.com/BurntSushi/toml",
+			"revision": "3012a1dbe2e4bd1391d42b32f0577cb7bbc7f005",
+			"revisionTime": "2018-08-15T10:47:33Z"
+		},
+		{
+			"checksumSHA1": "yCbsY+3iYgIJKpWSvI4MTBemxuw=",
+			"path": "github.com/beorn7/perks/quantile",
+			"revision": "37c8de3658fcb183f997c4e13e8337516ab753e6",
+			"revisionTime": "2019-07-31T12:00:54Z"
+		},
+		{
+			"path": "github.com/cespare/xxhash/v2",
+			"revision": ""
+		},
+		{
+			"path": "github.com/go-openapi/spec",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "rCoArospAtjlKOJF4bm6tApEEEw=",
+			"path": "github.com/golang/protobuf/descriptor",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "CtF4imOJ8KkjAAEQodM5a7kY5OU=",
+			"path": "github.com/golang/protobuf/jsonpb",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "37rz+vtxCquA1aU2jGFgyWhfLSE=",
+			"path": "github.com/golang/protobuf/jsonpb/jsonpb_test_proto",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "i+qe0+yssgxVBv8NEw9hBRH2UsY=",
+			"path": "github.com/golang/protobuf/proto",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "3VKpGEEWnmVFhbuYbYVQ/T2T0LU=",
+			"path": "github.com/golang/protobuf/proto/proto3_proto",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "NBj6U8SCt8rzWLyggo6fnvKc0hw=",
+			"path": "github.com/golang/protobuf/proto/test_proto",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "ZfNZBif8xEtwy16tgsXp+oBVnL8=",
+			"path": "github.com/golang/protobuf/protoc-gen-go/descriptor",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "qspo5Xz9Snq5nzKzuQGnDL5LTSU=",
+			"path": "github.com/golang/protobuf/ptypes",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "fKjx2dIvFUxCLdUepI98YiHM5sw=",
+			"path": "github.com/golang/protobuf/ptypes/any",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "hXYsfSabFmhkZKPDQBBqdyzbY7k=",
+			"path": "github.com/golang/protobuf/ptypes/duration",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "EkE+UY0bppvp9F/MEP/kOI4pjUM=",
+			"path": "github.com/golang/protobuf/ptypes/struct",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "dayZ4rJvq7qwXVr/g686AdY0vVs=",
+			"path": "github.com/golang/protobuf/ptypes/timestamp",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "v7LxevobQklife9HH4bt3pfXLUo=",
+			"path": "github.com/golang/protobuf/ptypes/wrappers",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "A0zS09FfwTgVp7v0xGDYVwTRzSk=",
+			"path": "github.com/matttproud/golang_protobuf_extensions/pbutil",
+			"revision": "c182affec369e30f25d3eb8cd8a478dee585ae7d",
+			"revisionTime": "2018-12-31T17:19:20Z"
+		},
+		{
+			"checksumSHA1": "fROk3NEFAz88JXptqo4kpwD15Ic=",
+			"path": "github.com/matttproud/golang_protobuf_extensions/testdata",
+			"revision": "c182affec369e30f25d3eb8cd8a478dee585ae7d",
+			"revisionTime": "2018-12-31T17:19:20Z"
+		},
+		{
+			"path": "github.com/onsi/ginkgo",
+			"revision": ""
+		},
+		{
+			"path": "github.com/onsi/gomega",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "/lUCUxnrbhx5q5WwIxChZ/SEt9Q=",
+			"path": "github.com/prometheus/client_golang/prometheus",
+			"revision": "aa9238db679fc02bf22cf4f2c27a980edcb5ada0",
+			"revisionTime": "2020-03-14T11:57:06Z"
+		},
+		{
+			"checksumSHA1": "UBqhkyjCz47+S19MVTigxJ2VjVQ=",
+			"path": "github.com/prometheus/client_golang/prometheus/internal",
+			"revision": "aa9238db679fc02bf22cf4f2c27a980edcb5ada0",
+			"revisionTime": "2020-03-14T11:57:06Z"
+		},
+		{
+			"checksumSHA1": "oZSnoSuchww1gXosNuBgHTMMLow=",
+			"path": "github.com/prometheus/client_golang/prometheus/promhttp",
+			"revision": "aa9238db679fc02bf22cf4f2c27a980edcb5ada0",
+			"revisionTime": "2020-03-14T11:57:06Z"
+		},
+		{
+			"checksumSHA1": "Vqeki1jZojFwy/wORMtH4nlXktk=",
+			"path": "github.com/prometheus/client_model/go",
+			"revision": "7bc5445566f0fe75b15de23e6b93886e982d7bf9",
+			"revisionTime": "2020-01-18T22:30:34Z"
+		},
+		{
+			"checksumSHA1": "16udt03UCtrhtKv216l5pZ1bW4M=",
+			"path": "github.com/prometheus/common/expfmt",
+			"revision": "6225330c4d5d7d0ffa21a82ad7eb041f82f25c7f",
+			"revisionTime": "2020-03-03T08:30:15Z"
+		},
+		{
+			"checksumSHA1": "t7ixs1SH8T9eONQUtOlNd449018=",
+			"path": "github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg",
+			"revision": "6225330c4d5d7d0ffa21a82ad7eb041f82f25c7f",
+			"revisionTime": "2020-03-03T08:30:15Z"
+		},
+		{
+			"checksumSHA1": "YdAq5Gv+DQ44MAJNVbsoSOywEw8=",
+			"path": "github.com/prometheus/common/model",
+			"revision": "6225330c4d5d7d0ffa21a82ad7eb041f82f25c7f",
+			"revisionTime": "2020-03-03T08:30:15Z"
+		},
+		{
+			"checksumSHA1": "A+JdL4zaWb5jEKUMLMSOulKhEtM=",
+			"path": "github.com/prometheus/procfs",
+			"revision": "8068798bcbd1702c3fc908a35f28e98b41f357aa",
+			"revisionTime": "2020-03-23T19:28:24Z"
+		},
+		{
+			"checksumSHA1": "OkSaAa0VrYwwvdyWOx0phf/vXWI=",
+			"path": "github.com/prometheus/procfs/internal/fs",
+			"revision": "8068798bcbd1702c3fc908a35f28e98b41f357aa",
+			"revisionTime": "2020-03-23T19:28:24Z"
+		},
+		{
+			"checksumSHA1": "kCTC7kmUJfelMwAH7EIILYSZRF0=",
+			"path": "github.com/prometheus/procfs/internal/util",
+			"revision": "8068798bcbd1702c3fc908a35f28e98b41f357aa",
+			"revisionTime": "2020-03-23T19:28:24Z"
+		},
+		{
+			"path": "github.com/spf13/cobra",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/apiserver/pkg/endpoints/openapi",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/apiserver/pkg/endpoints/request",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/apiserver/pkg/registry/generic",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/apiserver/pkg/registry/rest",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/apiserver/pkg/server",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/apiserver/pkg/server/healthz",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/apiserver/pkg/server/options",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/client-go/tools/portforward",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/client-go/transport/spdy",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/component-base/logs",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/component-base/metrics",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/component-base/metrics/legacyregistry",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/component-base/metrics/testutil",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/kube-openapi/pkg/common",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "9ZEiVKEWiDDqf4FXly4fC0YdBHY=",
+			"origin": "github.com/tommenx/storage/k8s_setup/metrics-server/vendor/k8s.io/kubernetes/pkg/kubelet/apis/stats/v1alpha1",
+			"path": "k8s.io/kubernetes/pkg/kubelet/apis/stats/v1alpha1",
+			"revision": "fbd2d3e35cd5213038f1ac62eec89341516d6a2a",
+			"revisionTime": "2020-03-15T13:04:34Z"
+		},
+		{
+			"path": "k8s.io/metrics/pkg/apis/metrics",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/metrics/pkg/apis/metrics/install",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/metrics/pkg/apis/metrics/v1beta1",
+			"revision": ""
+		},
+		{
+			"path": "k8s.io/metrics/pkg/client/clientset/versioned",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/cmd/metrics-server/app",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/cmd/metrics-server/app/options",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/pkg/api",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/pkg/api/generated/openapi",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/pkg/metrics-server",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/pkg/scraper",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/pkg/storage",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/pkg/utils",
+			"revision": ""
+		},
+		{
+			"path": "sigs.k8s.io/metrics-server/pkg/version",
+			"revision": ""
+		}
+	],
+	"rootPath": "github.com/tommenx/storage"
+}
