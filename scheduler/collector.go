@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 	"time"
 
@@ -26,11 +25,15 @@ type Metrics struct {
 }
 
 // prometheusAddr is the prometheus IP:port
-var prometheusAddr = "http://localhost:9090"
+var (
+	prometheusAddr = "http://localhost:9090"
+)
 
 // jsonMetrics used for storing metrics infos
 // Key is namespace + podName, Value is Metrics
-var jsonMetrics = make(map[string]Metrics)
+var (
+	jsonMetrics = make(map[string]Metrics)
+)
 
 
 func getPromClient() api.Client {
@@ -48,27 +51,34 @@ func getPromClient() api.Client {
 
 func query(client api.Client, currentTime time.Time) {
 	networkQuery(client, currentTime)
+
 	cpuQuery(client, currentTime)
+
 	diskIOQuery(client, currentTime)
+
 	memoryQuery(client, currentTime)
 }
 
+
 func main() {
-	client := getPromClient()
-	currentTime := time.Now()
+	// TODO: (1)understand the queryRange and series
+	// TODO: (2)learn the CGroup
 
-	// TODO: (1)use goroutines to deal with four query
-	// TODO: (2)protect the jsonMetrics using locks
-	// TODO: (3)provide a http interface for the metrics
-	// TODO: (4)understand the queryRange and series
-	// TODO: (5)learn the CGroup
-	//for {
-	query(client, currentTime)
+	for {
+		client := getPromClient()
+		currentTime := time.Now()
 
-	if metricsString, err := json.Marshal(jsonMetrics); err != nil {
-		fmt.Println(err)
-	} else {
-		handler := Handler{response: string(metricsString)}
-		go log.Fatal(http.ListenAndServe("localhost:33000", handler))
+		query(client, currentTime)
+
+		if metricsBytes, err := json.Marshal(jsonMetrics); err != nil {
+			fmt.Println(err)
+		} else {
+			if err := writeJsonToFile(metricsBytes); err != nil {
+				log.Println(err)
+				continue
+			}
+			fmt.Println(currentTime)
+			time.Sleep(5 * time.Second)
+		}
 	}
 }

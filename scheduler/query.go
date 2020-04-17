@@ -14,6 +14,9 @@ import (
 
 
 func metricsParser(entry string) (string, string, float64) {
+	if entry == "" {
+		return "", "", 0.0
+	}
 	re := regexp.MustCompile(`\{namespace="([\w-_]+)", pod="([\w-_]+)"\} => ([\.0-9]+) @\[([0-9\.]+)\]`)
 	params := re.FindSubmatch([]byte(entry))
 	namespace := string(params[1])
@@ -59,7 +62,6 @@ func cpuQuery(client api.Client, currentTime time.Time) {
 			}
 			jsonMetrics[namespace + podName] = metricsInfo
 		}
-		//fmt.Println(namespace, podName, cpuUtilization)
 	}
 }
 
@@ -81,7 +83,6 @@ func memoryQuery(client api.Client, currentTime time.Time) {
 	entries := strings.Split(result.String(), "\n")
 	for _, entry := range entries {
 		namespace, podName, memoryUtilization := metricsParser(entry)
-		//fmt.Println(namespace, podName, memoryUtilization)
 		if _, ok := jsonMetrics[namespace+podName]; ok { // this pod has exist in jsonMetrics
 			metricsInfo := jsonMetrics[namespace+podName]
 			metricsInfo.Infos.MemoryUtilization = memoryUtilization
@@ -140,7 +141,6 @@ func networkQuery(client api.Client, currentTime time.Time) {
 			}
 			jsonMetrics[namespace+podName] = metricsInfo
 		}
-		//fmt.Println(namespace, podName, networkIO)
 	}
 }
 
@@ -181,7 +181,6 @@ func diskIOQuery(client api.Client, currentTime time.Time) {
 			}
 			jsonMetrics[namespace+podName] = metricsInfo
 		}
-		//fmt.Println(namespace, podName, diskIO)
 	}
 }
 
